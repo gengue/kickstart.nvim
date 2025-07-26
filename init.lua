@@ -95,6 +95,12 @@ vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+-- resize windows
+vim.keymap.set('n', '<leader><left>', ':vertical resize +20<cr>')
+vim.keymap.set('n', '<leader><right>', ':vertical resize -20<cr>')
+vim.keymap.set('n', '<leader><up>', ':resize +10<cr>')
+vim.keymap.set('n', '<leader><down>', ':resize -10<cr>')
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -113,7 +119,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- close buffers
 vim.keymap.set('n', '<leader>c', '<Cmd>bdelete<CR>', { desc = 'Close buffer' })
 -- close window
-vim.keymap.set('n', '<C-Q>', '<Cmd>q!<CR>', { desc = 'force quit' })
+-- vim.keymap.set('n', '<C-Q>', '<Cmd>q!<CR>', { desc = 'force quit' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -196,7 +202,7 @@ require('lazy').setup({
     opts = {
       -- delay between pressing a key and opening which-key (milliseconds)
       -- this setting is independent of vim.o.timeoutlen
-      delay = 0,
+      delay = 600,
       icons = {
         -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
@@ -288,15 +294,21 @@ require('lazy').setup({
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
+      local actions = require 'telescope.actions'
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          mappings = {
+            i = {
+              ['<c-d>d'] = actions.delete_buffer,
+            },
+            n = {
+              ['dd'] = actions.delete_buffer,
+            },
+          },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
@@ -646,6 +658,16 @@ require('lazy').setup({
     },
   },
 
+  {
+    'zbirenbaum/copilot.lua',
+    opts = function()
+      require('copilot').setup {
+        -- suggestion = { enabled = false },
+        -- panel = { enabled = false },
+      }
+    end,
+  },
+
   { -- Autocompletion
     'saghen/blink.cmp',
     event = 'VimEnter',
@@ -762,7 +784,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
 
