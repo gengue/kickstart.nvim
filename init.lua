@@ -754,6 +754,11 @@ require('lazy').setup({
         return '%2l:%-2v'
       end
 
+      require('mini.icons').setup {
+        -- Set to true if you have a Nerd Font
+        use_nerd_font = vim.g.have_nerd_font,
+      }
+
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
