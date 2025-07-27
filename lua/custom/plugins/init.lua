@@ -70,4 +70,6 @@ return {
       require('sqlua').setup()
     end,
   },
+
+  { 'mg979/vim-visual-multi' },
 }
