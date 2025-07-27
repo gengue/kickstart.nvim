@@ -146,6 +146,14 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- Close all toggleterm instances on exit
+vim.api.nvim_create_autocmd('VimLeavePre', {
+  callback = function()
+    -- Explicitly close all toggleterm instances before Neovim exits
+    vim.cmd 'ToggleTermToggleAll!'
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
