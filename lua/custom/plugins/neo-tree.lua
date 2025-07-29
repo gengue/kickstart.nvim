@@ -11,17 +11,10 @@ return {
   },
   lazy = false,
   keys = {
-    -- { '\\', ':Neotree position=right reveal<CR>', desc = 'NeoTree reveal', silent = true },
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<leader>e', ':Neotree toggle<CR>', desc = 'NeoTree explorer', silent = true },
   },
   opts = {
-    filesystem = {
-      window = {
-        mappings = {
-          ['\\'] = 'close_window',
-        },
-      },
-    },
+    close_if_last_window = true,
     window = {
       width = 30,
       mappings = {

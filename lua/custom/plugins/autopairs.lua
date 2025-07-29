@@ -1,4 +1,11 @@
+-- autocompletion pairs and tags
+
 return {
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    opts = {},
+  },
   {
     'windwp/nvim-ts-autotag',
     config = function()
