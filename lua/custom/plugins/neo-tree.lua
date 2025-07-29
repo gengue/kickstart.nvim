@@ -14,7 +14,7 @@ return {
     { '<leader>e', ':Neotree toggle<CR>', desc = 'NeoTree explorer', silent = true },
   },
   opts = {
-    close_if_last_window = true,
+    -- close_if_last_window = true,
     window = {
       width = 30,
       mappings = {

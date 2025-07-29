@@ -2,7 +2,9 @@
 vim.api.nvim_create_autocmd('VimLeavePre', {
   callback = function()
     -- Explicitly close all toggleterm instances before Neovim exits
-    vim.cmd 'ToggleTermToggleAll!'
+    if pcall(require, 'toggleterm') then
+      require('toggleterm').close_all()
+    end
   end,
 })
 

@@ -92,12 +92,6 @@ return {
             winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None',
           },
         },
-        signature = {
-          window = {
-            border = 'rounded',
-            winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder',
-          },
-        },
         ghost_text = { enabled = true, show_with_menu = false },
       },
 
@@ -113,7 +107,14 @@ return {
       fuzzy = { implementation = 'prefer_rust_with_warning' },
 
       -- Shows a signature help window while you type arguments for a function
-      signature = { enabled = true },
+
+      signature = {
+        enabled = true,
+        window = {
+          border = 'rounded',
+          winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder',
+        },
+      },
     },
   },
 }
