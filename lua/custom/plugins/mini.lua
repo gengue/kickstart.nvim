@@ -1,3 +1,5 @@
+vim.api.nvim_set_keymap('n', '<leader>e', ':lua MiniFiles.open()<CR>', { noremap = true, silent = true, desc = 'Files explorer' })
+
 return {
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -36,6 +38,15 @@ return {
         -- Set to true if you have a Nerd Font
         use_nerd_font = vim.g.have_nerd_font,
       }
+
+      require('mini.files').setup()
+      vim.keymap.set('n', '-', function()
+        local MiniFiles = require 'mini.files'
+        local _ = MiniFiles.close() or MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+        vim.defer_fn(function()
+          MiniFiles.reveal_cwd()
+        end, 30)
+      end, { noremap = true, silent = true, desc = 'Files explorer' })
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim

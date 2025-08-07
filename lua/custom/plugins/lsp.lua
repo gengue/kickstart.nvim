@@ -221,17 +221,4 @@ return {
       }
     end,
   },
-  {
-    'luckasRanarison/tailwind-tools.nvim',
-    name = 'tailwind-tools',
-    build = ':UpdateRemotePlugins',
-    event = 'BufWinEnter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'neovim/nvim-lspconfig', -- optional
-    },
-    opts = {
-      custom_filetypes = 'rescript',
-    },
-  },
 }

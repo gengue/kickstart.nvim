@@ -11,6 +11,9 @@ vim.o.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
 
+-- auto refresh the tree when files change
+vim.opt.autoread = true
+
 -- Sync clipboard between OS and Neovim.
 vim.schedule(function()
   vim.o.clipboard = 'unnamedplus'

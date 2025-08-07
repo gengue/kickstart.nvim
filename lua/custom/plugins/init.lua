@@ -33,13 +33,18 @@ return {
         },
       },
       input = { enabled = true },
-      picker = { enabled = true },
+
+      -- telescope alternative
+      -- picker = { enabled = true },
+
+      -- toast notifications
       notifier = { enabled = true },
+
+      -- When doing nvim somefile.txt, it will render the file as quickly as possible, before loading your plugins.
       quickfile = { enabled = true },
+
+      -- Auto-show LSP references and quickly navigate between them
       words = { enabled = true },
-      terminal = {
-        enabled = true,
-      },
     },
   },
   { 'mg979/vim-visual-multi' },

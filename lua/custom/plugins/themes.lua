@@ -2,10 +2,6 @@ return {
   { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
   { 'EdenEast/nightfox.nvim' },
   {
-    'projekt0n/github-nvim-theme',
-    lazy = true,
-  },
-  {
     'webhooked/kanso.nvim',
     lazy = false,
     priority = 1000,
@@ -34,6 +30,10 @@ return {
     end,
   },
   {
+    'tinted-theming/tinted-vim',
+  },
+  { 'lunacookies/vim-colors-xcode' },
+  {
     'f-person/auto-dark-mode.nvim',
     opts = {
       update_interval = 1000,
@@ -44,8 +44,8 @@ return {
       end,
       set_light_mode = function()
         vim.api.nvim_set_option_value('background', 'light', {})
-        -- vim.cmd 'colorscheme github_light'
-        vim.cmd 'colorscheme dawnfox'
+        -- vim.cmd 'colorscheme dawnfox'
+        vim.cmd 'colorscheme xcodelight'
       end,
     },
   },
