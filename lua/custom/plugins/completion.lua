@@ -75,7 +75,7 @@ return {
           },
         },
         accept = {
-          auto_brackets = { enabled = true },
+          auto_brackets = { enabled = false },
         },
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.

@@ -49,6 +49,7 @@ return {
   },
   { 'mg979/vim-visual-multi' },
   {
+    -- nice animation in cursor movement
     'sphamba/smear-cursor.nvim',
     opts = {},
   },

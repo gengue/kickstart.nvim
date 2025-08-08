@@ -1,12 +1,11 @@
 return { -- Autoformat
   'stevearc/conform.nvim',
-  event = { 'BufWritePre' },
-  cmd = { 'ConformInfo' },
+  event = { 'BufWritePre', 'BufReadPre', 'BufNewFile' },
   keys = {
     {
       '<leader>f',
       function()
-        require('conform').format { async = true, lsp_format = 'fallback' }
+        require('conform').format { async = true, lsp_fallback = true }
       end,
       mode = '',
       desc = '[F]ormat buffer',
@@ -14,27 +13,58 @@ return { -- Autoformat
   },
   opts = {
     notify_on_error = false,
-    format_on_save = function(bufnr)
-      -- Disable "format_on_save lsp_fallback" for languages that don't
-      -- have a well standardized coding style. You can add additional
-      -- languages here or re-enable it for the disabled ones.
-      local disable_filetypes = { c = true, cpp = true }
-      if disable_filetypes[vim.bo[bufnr].filetype] then
-        return nil
-      else
-        return {
-          timeout_ms = 500,
-          lsp_format = 'fallback',
-        }
-      end
-    end,
+    format_on_save = {
+      timeout_ms = 500,
+      -- lsp_format = 'fallback',
+    },
+    -- Configure formatters to respect project config
+    formatters = {
+      prettier = {
+        -- Use local prettier config if it exists
+        condition = function(self, ctx)
+          return vim.fs.find(
+            { '.prettierrc', '.prettierrc.json', '.prettierrc.yml', '.prettierrc.yaml', '.prettierrc.js', 'prettier.config.js' },
+            { path = ctx.filename, upward = true }
+          )[1]
+        end,
+      },
+      eslint_d = {
+        condition = function(self, ctx)
+          return vim.fs.find({ '.eslintrc', '.eslintrc.js', '.eslintrc.json', 'eslint.config.js' }, { path = ctx.filename, upward = true })[1]
+        end,
+      },
+    },
     formatters_by_ft = {
       lua = { 'stylua' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
-      javascript = { 'biome', 'prettierd', 'prettier', stop_after_first = true },
+      -- Prioritize prettier and eslint_d over biome for better project compatibility
+      javascript = {
+        'prettier',
+        'eslint_d',
+        'biome',
+        stop_after_first = true,
+      },
+      javascriptreact = {
+        'prettier',
+        'eslint_d',
+        'biome',
+        stop_after_first = true,
+      },
+      typescript = {
+        'prettier',
+        'eslint_d',
+        'biome',
+        stop_after_first = true,
+      },
+      typescriptreact = {
+        'prettier',
+        'eslint_d',
+        'biome',
+        stop_after_first = true,
+      },
     },
   },
 }
