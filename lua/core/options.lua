@@ -11,6 +11,8 @@ vim.o.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
 
+vim.o.laststatus = 3 -- always show the status line
+
 -- auto refresh the tree when files change
 vim.opt.autoread = true
 
