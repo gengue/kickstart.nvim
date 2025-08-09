@@ -1,3 +1,5 @@
+-- HTTP clients and API tools - Currently using Kulala, extensible for other REST clients
+
 return {
   {
     'mistweaverco/kulala.nvim',

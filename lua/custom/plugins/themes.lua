@@ -41,4 +41,9 @@ return {
       end,
     },
   },
+
+  { -- Nice cursor animation effect
+    'sphamba/smear-cursor.nvim',
+    opts = {},
+  },
 }

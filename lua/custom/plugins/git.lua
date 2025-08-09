@@ -1,9 +1,7 @@
--- Adds git related signs to the gutter, as well as utilities for managing changes
--- NOTE: gitsigns is already included in init.lua but contains only the base
--- config. This will add also the recommended keymaps.
+-- Git integration and version control tools
 
 return {
-  {
+  { -- Git signs and hunk management
     'lewis6991/gitsigns.nvim',
     opts = {
       on_attach = function(bufnr)
@@ -57,5 +55,9 @@ return {
         map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle git show [D]eleted' })
       end,
     },
+  },
+
+  { -- Enhanced diff view and merge conflict resolution
+    'sindrets/diffview.nvim',
   },
 }

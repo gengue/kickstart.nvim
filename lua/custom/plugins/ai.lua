@@ -1,3 +1,5 @@
+-- AI assistants and tools - Currently using Copilot, extensible for other AI tools
+
 return {
   {
     'zbirenbaum/copilot.lua',

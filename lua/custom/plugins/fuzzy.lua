@@ -1,3 +1,5 @@
+-- Fuzzy finding and searching - Currently using Telescope, easily replaceable with mini.pick
+
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -18,6 +20,9 @@ return {
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
+
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+
       -- you must install `brew install chafa`
       { 'nvim-telescope/telescope-media-files.nvim' },
 
