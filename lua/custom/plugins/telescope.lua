@@ -21,8 +21,7 @@ return {
       -- you must install `brew install chafa`
       { 'nvim-telescope/telescope-media-files.nvim' },
 
-      -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      -- Icons are now provided by mini.icons - see mini.lua
     },
     config = function()
       -- Two important keymaps to use while in Telescope are:

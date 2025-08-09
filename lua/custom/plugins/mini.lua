@@ -48,6 +48,86 @@ return {
         end, 30)
       end, { noremap = true, silent = true, desc = 'Files explorer' })
 
+      -- Auto pairs - replaces nvim-autopairs
+      require('mini.pairs').setup()
+
+      -- Clue for key hints - replaces which-key
+      local miniclue = require 'mini.clue'
+      miniclue.setup {
+        triggers = {
+          -- Leader triggers
+          { mode = 'n', keys = '<Leader>' },
+          { mode = 'x', keys = '<Leader>' },
+
+          -- Built-in completion
+          { mode = 'i', keys = '<C-x>' },
+
+          -- `g` key
+          { mode = 'n', keys = 'g' },
+          { mode = 'x', keys = 'g' },
+
+          -- Marks
+          { mode = 'n', keys = "'" },
+          { mode = 'n', keys = '`' },
+          { mode = 'x', keys = "'" },
+          { mode = 'x', keys = '`' },
+
+          -- Registers
+          { mode = 'n', keys = '"' },
+          { mode = 'x', keys = '"' },
+          { mode = 'i', keys = '<C-r>' },
+          { mode = 'c', keys = '<C-r>' },
+
+          -- Window commands
+          { mode = 'n', keys = '<C-w>' },
+
+          -- `z` key
+          { mode = 'n', keys = 'z' },
+          { mode = 'x', keys = 'z' },
+        },
+
+        clues = {
+          -- Enhance this by adding descriptions for your custom mappings
+          { mode = 'n', keys = '<Leader>s', desc = '+[S]earch' },
+          { mode = 'n', keys = '<Leader>t', desc = '+[T]oggle' },
+          { mode = 'n', keys = '<Leader>h', desc = '+Git [H]unk' },
+          { mode = 'v', keys = '<Leader>h', desc = '+Git [H]unk' },
+          { mode = 'n', keys = '<Leader>l', desc = '+[L]SP' },
+          { mode = 'n', keys = '<Leader>R', desc = '+[R]equests' },
+
+          -- Include mini.clue's built-in clues
+          miniclue.gen_clues.builtin_completion(),
+          miniclue.gen_clues.g(),
+          miniclue.gen_clues.marks(),
+          miniclue.gen_clues.registers(),
+          miniclue.gen_clues.windows(),
+          miniclue.gen_clues.z(),
+        },
+
+        window = {
+          delay = 600, -- Same delay as your which-key config
+          config = {
+            width = 'auto',
+          },
+        },
+      }
+
+      -- Highlight patterns - replaces todo-comments.nvim and nvim-highlight-colors
+      require('mini.hipatterns').setup {
+        highlighters = {
+          -- TODO/FIXME/HACK/NOTE/PERF/WARNING highlighting
+          fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+          hack = { pattern = '%f[%w]()HACK()%f[%W]', group = 'MiniHipatternsHack' },
+          todo = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
+          note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
+          perf = { pattern = '%f[%w]()PERF()%f[%W]', group = 'MiniHipatternsNote' },
+          warning = { pattern = '%f[%w]()WARNING()%f[%W]', group = 'MiniHipatternsFixme' },
+
+          -- Hex color highlighting (#rrggbb)
+          hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
+        },
+      }
+
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
