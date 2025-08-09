@@ -7,7 +7,6 @@ return {
     'folke/snacks.nvim',
     priority = 1000,
     lazy = false,
-    ---@type snacks.Config
     keys = {
       {
         '<c-\\>',
@@ -224,7 +223,7 @@ return {
         },
 
         window = {
-          delay = 600, -- Same delay as your which-key config
+          delay = 600,
           config = {
             width = 'auto',
           },
@@ -246,9 +245,6 @@ return {
           hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
         },
       }
-
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
 
