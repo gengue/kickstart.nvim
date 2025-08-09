@@ -1,13 +1,43 @@
 return {
   {
     'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
     ---@type snacks.Config
-    opts = {
-      bigfile = {
-        notify = false, -- show notification when big file detected
-        size = 1.5 * 1024 * 1024, -- 1.5MB
-        line_length = 1000, -- average line length (useful for minified files)
+    keys = {
+      {
+        '<c-\\>',
+        function()
+          Snacks.terminal.toggle(nil, { win = { position = 'float' } })
+        end,
+        mode = { 'n', 't' },
+        desc = 'Toggle Terminal',
       },
+      {
+        '<c-t>=',
+        function()
+          Snacks.terminal.toggle(nil, { win = { position = 'bottom', height = 20 } })
+        end,
+        mode = { 'n', 't' },
+        desc = 'Toggle Horizontal Terminal',
+      },
+      {
+        '<c-t>|',
+        function()
+          Snacks.terminal.toggle(nil, { win = { position = 'float' } })
+        end,
+        mode = { 'n', 't' },
+        desc = 'Toggle Floating Terminal',
+      },
+      {
+        '<leader>gg',
+        function()
+          Snacks.lazygit()
+        end,
+        desc = 'LazyGit',
+      },
+    },
+    opts = {
       dashboard = {
         enabled = true,
         preset = {
@@ -32,19 +62,54 @@ return {
           },
         },
       },
+
+      bigfile = {
+        enabled = true,
+        notify = false, -- show notification when big file detected
+        size = 1.5 * 1024 * 1024, -- 1.5MB
+        line_length = 1000, -- average line length (useful for minified files)
+      },
+
       input = { enabled = true },
 
       -- telescope alternative
       -- picker = { enabled = true },
 
-      -- toast notifications
-      notifier = { enabled = true },
+      -- toast notifications (also shows LSP progress, replaces fidget.nvim)
+      notifier = { 
+        enabled = true,
+        timeout = 3000,
+      },
 
       -- When doing nvim somefile.txt, it will render the file as quickly as possible, before loading your plugins.
       quickfile = { enabled = true },
 
       -- Auto-show LSP references and quickly navigate between them
       words = { enabled = true },
+
+      -- Terminal - replaces toggleterm.nvim
+      terminal = {
+        enabled = true,
+        win = {
+          position = 'float',
+          border = 'rounded',
+        },
+      },
+
+      -- LazyGit integration - replaces lazygit.nvim
+      lazygit = { 
+        enabled = true,
+        -- Fix for dimmed buffer after closing
+        win = {
+          backdrop = false, -- Disable the dimmed backdrop
+        },
+      },
+
+      -- Auto-detect indentation - replaces guess-indent.nvim
+      indent = { 
+        enabled = true,
+        priority = 1, -- Run early
+      },
     },
   },
   { 'mg979/vim-visual-multi' },

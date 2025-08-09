@@ -1,18 +1,4 @@
--- REPLACED todo-comments and nvim-highlight-colors with mini.hipatterns - see mini.lua
-
 return {
-  -- { -- Highlight todo, notes, etc in comments
-  --   'folke/todo-comments.nvim',
-  --   event = 'VimEnter',
-  --   dependencies = { 'nvim-lua/plenary.nvim' },
-  --   opts = { signs = false },
-  -- },
-  -- {
-  --   'brenoprata10/nvim-highlight-colors',
-  --   config = function()
-  --     require('nvim-highlight-colors').setup {}
-  --   end,
-  -- },
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
@@ -39,3 +25,4 @@ return {
     },
   },
 }
+
